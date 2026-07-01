@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeDownloader - All in One Video Downloader</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #004AAD 100%);
+            color: white;
+            padding: 60px 0;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* 🔥 نیا HD اور پروفیشنل آئیکن ڈیزائن 🔥 */
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+        .social-icons i {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .download-card {
+            margin-top: -40px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .ad-space {
+            background-color: #e9ecef;
+            border: 2px dashed #ced4da;
+            color: #6c757d;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .btn-donate {
+            background-color: #FF813F;
+            color: white;
+            font-weight: bold;
+            border-radius: 30px;
+        }
+        .btn-donate:hover {
+            background-color: #e06c30;
+            color: white;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">
+                <i class="fas fa-cloud-download-alt"></i> FreeDownloader.site
+            </a>
+            <a href="https://www.buymeacoffee.com/" target="_blank" class="btn btn-donate px-4">
+                <i class="fas fa-coffee"></i> Buy us a Coffee
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="ad-space">
+            <i class="fas fa-ad"></i> Advertisement Space (728x90 Banner)
+        </div>
+    </div>
+
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-5 fw-bold mb-3">Download Any Video For Free</h1>
+            <p class="lead mb-4">Fast, secure, and free video downloader for all your favorite platforms.</p>
+            <div class="social-icons mb-4">
+                <a href="#"><i class="fab fa-youtube text-danger"></i></a>
+                <a href="#"><i class="fab fa-facebook text-primary"></i></a>
+                <a href="#"><i class="fab fa-instagram" style="color: #E1306C;"></i></a>
+                <a href="#"><i class="fab fa-tiktok text-dark"></i></a>
+                <a href="#"><i class="fab fa-twitter text-info"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="download-card">
+                    <form id="downloadForm">
+                        <div class="input-group input-group-lg mb-3">
+                            <input type="url" class="form-control" id="url" name="url" placeholder="Paste video link here..." required>
+                            <button class="btn btn-primary px-4" type="submit" id="submitBtn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="result" class="text-center mt-4" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="ad-space">
+            <i class="fas fa-ad"></i> Advertisement Space (728x90 Banner)
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h3 class="fw-bold mb-4">How to Use FreeDownloader?</h3>
+                <p class="text-muted mb-4">Watch this quick 1-minute tutorial to see how easy it is to download videos from any platform directly to your device.</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 FreeDownloader.site - All Rights Reserved.</p>
+            <small class="text-muted">Disclaimer: We do not host any copyrighted content on our servers.</small>
+        </div>
+    </footer>
+
+    <script>
+        let isFirstClick = true; 
+
+        document.getElementById('downloadForm').onsubmit = async function(e) {
+            e.preventDefault();
+            let resultDiv = document.getElementById('result');
+            let submitBtn = document.getElementById('submitBtn');
+            isFirstClick = true; 
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="alert alert-info">Fetching video details, please wait... ⏳</div>';
+
+            let formData = new FormData(this);
+            
+            try {
+                let response = await fetch('/get_video', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                let data = await response.json();
+                
+                if(data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="card border-success mt-3 shadow-sm">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-success mb-3"><i class="fas fa-check-circle"></i> Video Ready!</h5>
+                                
+                                <img src="${data.thumbnail}" alt="Video Thumbnail" class="img-fluid rounded mb-3" style="max-height: 250px; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                                
+                                <p class="card-text fw-bold text-dark mb-3">${data.title}</p>
+                                
+                                <!-- 🔥 یہ رہی بٹن کی نئی واضح ہدایت 🔥 -->
+                                <button type="button" id="realDownloadBtn" onclick="startDownload('${data.download_url}')" class="btn btn-success btn-lg w-100 fw-bold">
+                                    <i class="fas fa-mouse-pointer"></i> Click Here & Wait 5 Seconds
+                                </button>
+                            </div>
+                        </div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> ${data.error}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="alert alert-danger">Network error! Please try again later.</div>`;
+            }
+
+            submitBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+            submitBtn.disabled = false;
+        };
+
+        function startDownload(vidUrl) {
+            let btn = document.getElementById('realDownloadBtn');
+            
+            if (isFirstClick) {
+                window.open('https://google.com', '_blank'); 
+                
+                isFirstClick = false;
+                btn.disabled = true;
+                let count = 5;
+                btn.className = "btn btn-warning btn-lg w-100 fw-bold text-dark";
+                btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Please wait ${count} seconds...`;
+                
+                let timer = setInterval(function() {
+                    count--;
+                    btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Please wait ${count} seconds...`;
+                    if (count <= 0) {
+                        clearInterval(timer);
+                        btn.disabled = false;
+                        btn.className = "btn btn-success btn-lg w-100 fw-bold";
+                        btn.innerHTML = `<i class="fas fa-check-circle"></i> File Ready - Click to Download`;
+                    }
+                }, 1000);
+            } else {
+                window.open(vidUrl, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
