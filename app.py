@@ -10,15 +10,23 @@ def index():
 @app.route('/get_video', methods=['POST'])
 def get_video():
     url = request.form.get('url')
-    # سادہ اور طاقتور طریقے سے لنک نکالنا
+    if not url:
+        return jsonify({"error": "براہ کرم لنک درج کریں"})
+    
+    # yt-dlp کی سیٹنگز جو ہر ویڈیو کے لیے بہترین ہیں
     ydl_opts = {
         'format': 'best',
         'noplaylist': True,
+        'quiet': True,
+        'no_warnings': True
     }
+    
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            # ویڈیو کی معلومات نکالنا
             info = ydl.extract_info(url, download=False)
-            return jsonify({"success": True, "download_url": info['url']})
+            video_url = info.get('url')
+            return jsonify({"success": True, "download_url": video_url})
     except Exception as e:
         return jsonify({"success": False, "error": "لنک کام نہیں کر رہا، کوئی اور ویڈیو چیک کریں"})
 
