@@ -16,6 +16,7 @@ def get_video():
     ydl_opts = {
         'format': 'best',
         'extractor_args': {'youtube': {'player_client': ['android']}},
+        'geo-bypass': True,
         'quiet': True,
         'no_warnings': True
     }
