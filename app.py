@@ -13,12 +13,12 @@ def get_video():
     if not url:
         return jsonify({"error": "براہ کرم کوئی لنک درج کریں!"})
 
- ydl_opts = {
-        'format': 'best',
-        'extractor_args': {'youtube': {'player_client': ['android']}},
-        'quiet': True,
-        'no_warnings': True
-    } 
+ydl_opts = {
+    'format': 'best',
+    'extractor_args': {'youtube': {'player_client': ['android']}},
+    'quiet': True,
+    'no_warnings': True
+}
    
 
     try:
