@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import yt_dlp
+from pytube import YouTube
 
 app = Flask(__name__)
 
@@ -10,16 +10,11 @@ def index():
 @app.route('/get_video', methods=['POST'])
 def get_video():
     url = request.form.get('url')
-    if not url:
-        return jsonify({"error": "براہ کرم لنک درج کریں"})
-    
     try:
-        # صرف ویڈیو کا لنک حاصل کرنے کے لیے
-        ydl_opts = {'format': 'best'}
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-            video_url = info.get('url')
-            return jsonify({"success": True, "download_url": video_url})
+        yt = YouTube(url)
+        # سب سے بہترین کوالٹی کا لنک نکالنا
+        stream = yt.streams.get_highest_resolution()
+        return jsonify({"success": True, "download_url": stream.url})
     except Exception:
         return jsonify({"success": False, "error": "لنک کام نہیں کر رہا"})
 
