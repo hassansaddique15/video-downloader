@@ -11,31 +11,17 @@ def index():
 def get_video():
     url = request.form.get('url')
     if not url:
-        return jsonify({"error": "براہ کرم کوئی لنک درج کریں!"})
-    
-    ydl_opts = {
-        'format': 'best',
-        'extractor_args': {'youtube': {'player_client': ['android']}},
-        'geo-bypass': True,
-        'quiet': True,
-        'no_warnings': True
-    }
+        return jsonify({"error": "براہ کرم لنک درج کریں"})
     
     try:
+        # صرف ویڈیو کا لنک حاصل کرنے کے لیے
+        ydl_opts = {'format': 'best'}
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info_dict = ydl.extract_info(url, download=False)
-            video_url = info_dict.get('url', None)
-            video_title = info_dict.get('title', 'Video')
-            video_thumbnail = info_dict.get('thumbnail', '')
-            
-            return jsonify({
-                "success": True,
-                "title": video_title,
-                "download_url": video_url,
-                "thumbnail": video_thumbnail
-            })
-    except Exception as e:
-        return jsonify({"success": False, "error": "لنک غلط ہے یا ویڈیو پرائیویٹ ہے"})
+            info = ydl.extract_info(url, download=False)
+            video_url = info.get('url')
+            return jsonify({"success": True, "download_url": video_url})
+    except Exception:
+        return jsonify({"success": False, "error": "لنک کام نہیں کر رہا"})
 
 if __name__ == '__main__':
     app.run(debug=True)
