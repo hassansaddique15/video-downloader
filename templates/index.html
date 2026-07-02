@@ -1,285 +1,150 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Any Video For Free - Video Downloader</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>FreeDownloader.site - Fast & Secure Video Downloader</title>
     <style>
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
         }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Top Blue Header Banner Section */
-        .header-banner {
-            background: linear-gradient(135deg, #0d6efd 0%, #004ecb 100%);
+        header {
+            background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC);
             color: white;
+            padding: 20px 0;
             text-align: center;
-            padding: 50px 20px 100px 20px;
-        }
-
-        .header-banner h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        .header-banner p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* Social Media Brand Icons */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .social-icons a {
-            width: 45px;
-            height: 45px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        .social-icons a:hover {
-            transform: translateY(-3px);
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
         }
-
-        .social-icons .fa-youtube { color: #ff0000; }
-        .social-icons .fa-facebook { color: #1877f2; }
-        .social-icons .fa-instagram { color: #e1306c; }
-        .social-icons .fa-tiktok { color: #000000; }
-        .social-icons .fa-twitter { color: #1da1f2; }
-
-        /* Main Container Box */
-        .main-container {
-            max-width: 750px;
-            width: 90%;
-            margin: -70px auto 30px auto;
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 30px;
-            z-index: 10;
-        }
-
-        /* Input Form Layout */
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .input-group input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e2e8f0;
             border-radius: 10px;
-            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .download-section {
+            text-align: center;
+            padding: 30px 20px;
+            border: 2px dashed #4364F7;
+            border-radius: 10px;
+            background-color: #fafbfc;
+            margin-bottom: 30px;
+        }
+        .download-section input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            margin-bottom: 20px;
             outline: none;
-            transition: border-color 0.2s;
         }
-
-        .input-group input:focus {
-            border-color: #0d6efd;
-        }
-
-        .input-group button {
-            background-color: #0d6efd;
+        .download-section button {
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 0 25px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-
-        .input-group button:hover {
-            background-color: #0056b3;
+        .download-section button:hover {
+            background-color: #218838;
         }
-
-        /* Dynamic Video Ready Box */
-        .result-box {
-            border: 2px solid #28a745;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            background-color: #f8fff9;
-            margin-top: 10px;
-        }
-
-        .status-title {
-            color: #28a745;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .thumbnail-container {
-            max-width: 400px;
-            margin: 0 auto 15px auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .thumbnail-container img {
-            width: 100%;
-            display: block;
-        }
-
-        .video-info {
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            color: #222;
-        }
-
-        /* Big Green Download Button */
-        .download-action-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            background-color: #198754;
-            color: white;
-            text-decoration: none;
-            padding: 15px;
+        .about-section {
+            background-color: #fdfdfd;
+            padding: 25px;
             border-radius: 8px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: background-color 0.2s, transform 0.1s;
-            cursor: pointer;
+            border-left: 5px solid #4364F7;
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
-
-        .download-action-btn:hover {
-            background-color: #157347;
-        }
-        
-        .download-action-btn:active {
-            transform: scale(0.99);
-        }
-
-        /* Adsterra 300x250 Banner Centered Container */
-        .ad-wrapper {
-            text-align: center;
-            margin: 30px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 250px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: auto;
-            color: #777;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-            background: white;
-        }
-
-        @media (max-width: 576px) {
-            .header-banner h1 { font-size: 1.8rem; }
-            .input-group { flex-direction: column; }
-            .input-group button { padding: 15px; justify-content: center; }
-            .main-container { padding: 20px; }
+        .about-section h2 {
+            margin-top: 0;
+            color: #0052D4;
         }
     </style>
-
-    <script src="https://pl30176543.effectivecpmnetwork.com/af/41/81/af41819e29e049173a9116a7f116ff65.js"></script>
 </head>
 <body>
 
-    <div class="header-banner">
-        <h1>Download Any Video For Free</h1>
-        <p>Fast, secure, and free video downloader for all your favorite platforms.</p>
-        
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+    <header>
+        <h1>FreeDownloader.site</h1>
+        <p>Download your favorite videos in seconds!</p>
+    </header>
+
+    <div class="container">
+        <!-- Downloader Tool Area -->
+        <div class="download-section">
+            <h2 style="margin-top:0; color:#333;">Paste Video URL Here</h2>
+            <input type="text" placeholder="https://www.example.com/video...">
+            <br>
+            <button>Download Now</button>
         </div>
-    </div>
 
-    <div class="main-container">
-        <form action="/download" method="POST" class="input-group">
-            <input type="text" name="url" placeholder="Paste video link here..." required>
-            <button type="submit"><i class="fas fa-download"></i> Download</button>
-        </form>
-
-        <div class="result-box">
-            <div class="status-title">
-                <i class="fas fa-check-circle"></i> Video Ready!
-            </div>
-            
-            <div class="thumbnail-container">
-                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500" alt="Video Thumbnail">
-            </div>
-            
-            <div class="video-info">YouTube Video Ready!</div>
-            
-            <a href="#" class="download-action-btn">
-                <i class="fas fa-cloud-download-alt"></i> File Ready - Click to Download
-            </a>
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>About Us</h2>
+            <p>Hi! I created this Free Video Downloader to solve your downloading problems in seconds. My goal is to provide a fast, secure, and easy-to-use platform so you can save your favorite videos instantly without any hassle.</p>
+            <p>Keeping these servers fast and running smoothly takes a lot of effort and resources. If this tool has made your life easier and saved your valuable time, consider supporting my work. Your contribution helps keep this service 100% free for everyone. Thank you!</p>
         </div>
-    </div>
 
-    <div class="ad-wrapper">
+        <!-- Support Button Start -->
+        <div style="text-align: center; margin: 40px 0; font-family: sans-serif;">
+            <p style="font-size: 16px; color: #555; margin-bottom: 12px; font-weight: 500;">If this tool saved your time, consider supporting my work!</p>
+            <button onclick="openDonateModal()" style="background: linear-gradient(135deg, #007bff, #00c6ff); color: white; border: none; padding: 14px 30px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4); transition: transform 0.2s;">
+                ❤️ Support Our Free Work
+            </button>
+        </div>
+
+        <!-- Support Modal (Pop-up) -->
+        <div id="donateModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);">
+            <div style="background-color: #fff; margin: 10% auto; padding: 25px; border-radius: 15px; width: 90%; max-width: 420px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; position: relative;">
+                <span onclick="closeDonateModal()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #888; transition: 0.3s;">&times;</span>
+                
+                <h2 style="color: #222; margin-top: 5px; font-size: 24px;">Support Our Work</h2>
+                <p style="color: #666; font-size: 15px; margin-bottom: 25px;">Your support helps keep this server fast and 100% free for everyone!</p>
+
+                <!-- International Users Section -->
+                <div style="background: #f4f8ff; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #d0e1ff; text-align: left;">
+                    <h3 style="margin: 0 0 8px 0; color: #0056b3; font-size: 16px; display: flex; align-items: center;">🌍 International Users</h3>
+                    <p style="margin: 5px 0; font-size: 14px; color: #333;">Send via <b>Skrill</b> to:</p>
+                    <p style="margin: 0; font-size: 15px; font-weight: bold; color: #000; background: #fff; padding: 8px; border-radius: 5px; border: 1px dashed #aaa; text-align: center;">mahmood396@gmail.com</p>
+                </div>
+
+                <!-- Pakistani Users Section -->
+                <div style="background: #f4fff4; padding: 15px; border-radius: 10px; border: 1px solid #cce8cc; text-align: left;">
+                    <h3 style="margin: 0 0 8px 0; color: #28a745; font-size: 16px; display: flex; align-items: center;">🇵🇰 Pakistani Users</h3>
+                    <p style="margin: 5px 0; font-size: 14px; color: #333;"><b>NayaPay:</b></p>
+                    <p style="margin: 0 0 10px 0; font-size: 15px; font-weight: bold; color: #000;">+923135657001</p>
+                    
+                    <p style="margin: 5px 0; font-size: 14px; color: #333;"><b>JazzCash / EasyPaisa:</b></p>
+                    <p style="margin: 0; font-size: 15px; font-weight: bold; color: #000;">+923135657001</p>
+                </div>
+                
+                <p style="font-size: 13px; color: #888; margin-top: 20px;">Thank you for your generosity! ❤️</p>
+            </div>
+        </div>
+
         <script>
-            atOptions = {
-                'key' : 'a12c72aeb6e00ec5e2f19a0a55bab44e',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
+            function openDonateModal() { document.getElementById('donateModal').style.display = 'block'; }
+            function closeDonateModal() { document.getElementById('donateModal').style.display = 'none'; }
+            window.onclick = function(event) { if (event.target == document.getElementById('donateModal')) { closeDonateModal(); } }
         </script>
-        <script src="https://www.highperformanceformat.com/a12c72aeb6e00ec5e2f19a0a55bab44e/invoke.js"></script>
+        <!-- Support Button End -->
+
     </div>
-    <footer>
-        <p>&copy; 2026 Free Video Downloader Network. All rights reserved.</p>
-    </footer>
 
 </body>
 </html>
