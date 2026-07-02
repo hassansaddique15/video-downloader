@@ -36,23 +36,29 @@ def get_video():
         "x-rapidapi-key": "495f4beb3fmsh51fcb0c00e174c4p1c51b4jsnd552714ea005"
     }
 
+    # ⬇️⬇️⬇️⬇️ نیا جاسوس کوڈ یہاں سے شروع ہوتا ہے ⬇️⬇️⬇️⬇️
     try:
         # API کو ریکویسٹ بھیجنا
         response = requests.get(api_url, headers=headers)
-        data = response.json()
         
+        # چیک کرنا کہ API نے ڈیٹا صحیح بھیجا ہے یا کوئی کچرا (HTML)
+        try:
+            data = response.json()
+        except Exception as json_err:
+            return jsonify({"success": False, "error": f"API Bad Response: {response.text[:150]}"})
+            
         if response.status_code == 200:
-            # API سے ملنے والا ڈاؤن لوڈ لنک
             download_url = data.get('url') or data.get('download_url') or data.get('link')
             if download_url:
                  return jsonify({"success": True, "download_url": download_url})
             else:
-                 return jsonify({"success": False, "error": "Could not extract download link. API might be changing response format."})
+                 return jsonify({"success": False, "error": f"Link missing in data: {str(data)}"})
         else:
-            return jsonify({"success": False, "error": "API Error: Please try again later."})
+            return jsonify({"success": False, "error": f"API Blocked (Code {response.status_code}): {data.get('message', 'Unknown Error')}"})
 
     except Exception as e:
-        return jsonify({"success": False, "error": "Server error while contacting API."})
+        return jsonify({"success": False, "error": f"Connection Crash: {str(e)}"})
+    # ⬆️⬆️⬆️⬆️ نیا جاسوس کوڈ یہاں ختم ہوتا ہے ⬆️⬆️⬆️⬆️
 
 if __name__ == '__main__':
     app.run(debug=True)
