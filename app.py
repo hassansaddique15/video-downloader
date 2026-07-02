@@ -4,7 +4,7 @@ import re
 
 app = Flask(__name__)
 
-# یہ فنکشن یوٹیوب کے ہر قسم کے لنک (ویڈیو اور شارٹس) میں سے ID نکالے گا
+# URL سے یوٹیوب کی ID نکالنے کا فنکشن
 def get_youtube_id(url):
     match = re.search(r'(?:v=|\/shorts\/|youtu\.be\/)([0-9A-Za-z_-]{11})', url)
     if match:
@@ -23,13 +23,14 @@ def get_video():
     if not video_id:
         return jsonify({"success": False, "error": "Invalid YouTube URL! Please enter a valid link."})
         
-    # سمارٹ چیک: اگر لنک میں shorts ہے تو شارٹس والی API کال ہوگی، ورنہ عام ویڈیو والی
+    # سمارٹ کوالٹی چیک:
     if '/shorts/' in url:
-        api_url = f"https://youtube-video-fast-downloader-24-7.p.rapidapi.com/download_short/{video_id}?quality=247"
+        # شارٹس چھوٹی ہوتی ہیں، اس لیے ان کے لیے 720p (quality=22) بالکل محفوظ ہے
+        api_url = f"https://youtube-video-fast-downloader-24-7.p.rapidapi.com/download_short/{video_id}?quality=22"
     else:
-        api_url = f"https://youtube-video-fast-downloader-24-7.p.rapidapi.com/download_video/{video_id}?quality=247"
+        # لمبی ویڈیوز کے لیے 360p (quality=18) سیٹ کیا ہے تاکہ سرور کبھی ٹائم آؤٹ نہ ہو
+        api_url = f"https://youtube-video-fast-downloader-24-7.p.rapidapi.com/download_video/{video_id}?quality=18"
     
-    # آپ کی جادوئی چابی (API Key)
     headers = {
         "Content-Type": "application/json",
         "x-rapidapi-host": "youtube-video-fast-downloader-24-7.p.rapidapi.com",
@@ -41,22 +42,30 @@ def get_video():
         
         try:
             data = response.json()
-        except Exception as json_err:
-            return jsonify({"success": False, "error": f"API Bad Response: {response.text[:150]}"})
+        except Exception:
+            return jsonify({"success": False, "error": "API Bad Response: Data format galat hai."})
             
         if response.status_code == 200:
-            # ⬇️ ہم نے یہاں 'file' لکھ دیا ہے تاکہ یہ API سے ڈائریکٹ لنک پکڑ لے ⬇️
-            download_url = data.get('file') or data.get('reserved_file')
+            download_url = data.get('file') or data.get('reserved_file') or data.get('url')
             
             if download_url:
-                 return jsonify({"success": True, "download_url": download_url})
+                # تھمب نیل اور ٹائٹل کا خودکار جگاڑ
+                thumbnail_url = data.get('thumb') or data.get('thumbnail') or f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
+                video_title = data.get('title') or "YouTube Video Ready!"
+
+                return jsonify({
+                    "success": True, 
+                    "download_url": download_url,
+                    "thumbnail": thumbnail_url,
+                    "title": video_title
+                })
             else:
-                 return jsonify({"success": False, "error": f"Link missing in data: {str(data)}"})
+                return jsonify({"success": False, "error": "Link missing in data. Video aur choti karke try karein."})
         else:
-            return jsonify({"success": False, "error": f"API Blocked (Code {response.status_code}): {data.get('message', 'Unknown Error')}"})
+            return jsonify({"success": False, "error": f"API Error (Code {response.status_code}): Please try again."})
 
     except Exception as e:
-        return jsonify({"success": False, "error": f"Connection Crash: {str(e)}"})
+        return jsonify({"success": False, "error": f"Connection Error: {str(e)}"})
 
 if __name__ == '__main__':
     app.run(debug=True)
