@@ -4,136 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreeDownloader.site - Fast & Secure</title>
+    <title>FreeDownloader.site</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; margin: 0; padding: 0; }
-        header { background: linear-gradient(135deg, #4364F7, #6FB1FC); color: white; padding: 25px 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; font-size: 32px; font-weight: bold; }
-        header p { margin: 10px 0 0 0; font-size: 16px; opacity: 0.9; }
-        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        .box-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 30px; text-align: center; border-top: 4px solid #4364F7; }
-        input[type="text"] { width: 85%; padding: 16px; font-size: 16px; border: 2px solid #e0e0e0; border-radius: 8px; margin-bottom: 20px; outline: none; transition: border 0.3s; }
-        input[type="text"]:focus { border: 2px solid #4364F7; }
-        .download-btn { background-color: #28a745; color: white; border: none; padding: 16px 45px; font-size: 18px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
-        .download-btn:hover { background-color: #218838; }
-        .ad-section { margin: 25px auto; padding: 10px; max-width: 100%; text-align: center; overflow: hidden; display: flex; justify-content: center; align-items: center; }
-        .about-text { text-align: left; line-height: 1.8; color: #555; padding: 20px; background: #fdfdfd; border-left: 5px solid #4364F7; border-radius: 8px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 0; }
         
-        /* Steps Styling */
-        .step-row { display: flex; align-items: center; margin-bottom: 20px; text-align: left; background: #fdfdfd; padding: 15px; border-radius: 10px; border: 1px solid #eee; }
-        .step-number { background: #4364F7; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-size: 18px; font-weight: bold; margin-right: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(67, 100, 247, 0.3); }
-        .step-number.success { background: #28a745; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
-        .step-text h4 { margin: 0 0 5px 0; color: #222; font-size: 16px; }
-        .step-text p { margin: 0; font-size: 14px; color: #666; }
+        /* Dark Blue Header */
+        header { background: linear-gradient(135deg, #003399, #0056b3); color: white; padding: 50px 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        header h1 { margin: 0; font-size: 40px; font-weight: bold; }
+        
+        .container { max-width: 700px; margin: -30px auto 40px auto; padding: 0 20px; }
+        .box-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 25px; text-align: center; }
+        
+        input[type="text"] { width: 90%; padding: 18px; font-size: 16px; border: 2px solid #ddd; border-radius: 50px; margin-bottom: 20px; outline: none; }
+        .download-btn { background-color: #28a745; color: white; border: none; padding: 18px 50px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; max-width: 300px; transition: 0.3s; }
+        
+        /* Moved Support Button */
+        .support-btn { background: #007bff; color: white; border: none; padding: 14px 40px; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+
+        /* Social Icons */
+        .social-section { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
+        .social-icon { background: white; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-weight: bold; color: #003399; text-decoration: none; }
+
+        /* Compact Steps */
+        .step-row { display: flex; align-items: center; margin-bottom: 5px; text-align: left; padding: 5px 10px; }
+        .step-number { background: #003399; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; font-size: 14px; margin-right: 15px; flex-shrink: 0; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>FreeDownloader.site</h1>
-        <p>Download your favorite videos in seconds, completely free!</p>
     </header>
 
     <div class="container">
-        
-        <!-- Downloader Section -->
+        <!-- Downloader -->
         <div class="box-card">
-            <h2 style="margin-top:0; color:#222;">Paste Video URL Here</h2>
-            <input type="text" placeholder="https://www.example.com/video...">
+            <h2 style="margin-top:0;">Paste Video URL</h2>
+            <input type="text" placeholder="Paste link here...">
             <br>
             <button class="download-btn">Download Now</button>
+            <br>
+            <button onclick="openDonateModal()" class="support-btn">❤️ Support Our Work</button>
             
-            <!-- Adsterra Banner Ad Spot -->
-            <div class="ad-section">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'a12c72aeb6e00ec5e2f19a0a55bab44e',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
+            <!-- Banner Ad -->
+            <div style="margin-top: 20px;">
+                <script type="text/javascript"> atOptions = { 'key' : 'a12c72aeb6e00ec5e2f19a0a55bab44e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script>
                 <script type="text/javascript" src="https://www.highperformanceformat.com/a12c72aeb6e00ec5e2f19a0a55bab44e/invoke.js"></script>
             </div>
         </div>
 
-        <!-- How to Download Guide (Text Based) -->
+        <!-- How to -->
         <div class="box-card">
-            <h2 style="margin-top:0; margin-bottom: 25px; color:#222;">How to Download?</h2>
+            <h3 style="margin-top:0;">How to Download?</h3>
+            <div class="step-row"><div class="step-number">1</div> Copy the video link.</div>
+            <div class="step-row"><div class="step-number">2</div> Paste and hit Download.</div>
+            <div class="step-row"><div class="step-number">3</div> Save it to your device!</div>
             
-            <div class="step-row">
-                <div class="step-number">1</div>
-                <div class="step-text">
-                    <h4>Copy the Link</h4>
-                    <p>Copy the link of the video from any platform you want to download.</p>
-                </div>
-            </div>
-
-            <div class="step-row">
-                <div class="step-number">2</div>
-                <div class="step-text">
-                    <h4>Paste and Click</h4>
-                    <p>Paste the copied link into the box above and hit the "Download Now" button.</p>
-                </div>
-            </div>
-
-            <div class="step-row" style="margin-bottom: 0;">
-                <div class="step-number success">3</div>
-                <div class="step-text">
-                    <h4>Wait and Save</h4>
-                    <p>Wait just 5 seconds, and your high-quality video will be ready to save!</p>
-                </div>
+            <!-- Social Icons -->
+            <div class="social-section">
+                <a href="#" class="social-icon">FB</a>
+                <a href="#" class="social-icon">IG</a>
+                <a href="#" class="social-icon">YT</a>
             </div>
         </div>
-
-        <!-- About Us & Support Section -->
-        <div class="box-card">
-            <div class="about-text">
-                <h3 style="margin-top:0; color:#4364F7;">About Us</h3>
-                <p>Hi! I created this Free Video Downloader to solve your downloading problems in seconds. My goal is to provide a fast, secure, and easy-to-use platform so you can save your favorite videos instantly.</p>
-                <p>Keeping these servers fast and running smoothly takes a lot of effort and resources. If this tool has made your life easier, consider supporting my work. Thank you!</p>
-            </div>
-
-            <!-- Support Button -->
-            <div style="margin-top: 35px;">
-                <button onclick="openDonateModal()" style="background: linear-gradient(135deg, #007bff, #00c6ff); color: white; border: none; padding: 14px 35px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4); transition: transform 0.2s;">
-                    ❤️ Support Our Free Work
-                </button>
-            </div>
-        </div>
-
     </div>
 
-    <!-- Support Modal (Pop-up) -->
-    <div id="donateModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);">
-        <div style="background-color: #fff; margin: 5% auto; padding: 25px; border-radius: 15px; width: 90%; max-width: 420px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: sans-serif; position: relative;">
-            <span onclick="closeDonateModal()" style="position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #888; transition: 0.3s;">&times;</span>
-            <h2 style="color: #222; margin-top: 5px; font-size: 24px;">Support Our Work</h2>
-            <p style="color: #666; font-size: 15px; margin-bottom: 25px;">Your support helps keep this server fast and 100% free for everyone!</p>
-
-            <div style="background: #f4f8ff; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #d0e1ff; text-align: left;">
-                <h3 style="margin: 0 0 8px 0; color: #0056b3; font-size: 16px;">🌍 International Users</h3>
-                <p style="margin: 5px 0; font-size: 14px; color: #333;">Send via <b>Skrill</b> to:</p>
-                <p style="margin: 0; font-size: 15px; font-weight: bold; color: #000; background: #fff; padding: 8px; border-radius: 5px; border: 1px dashed #aaa; text-align: center;">mahmood396@gmail.com</p>
-            </div>
-
-            <div style="background: #f4fff4; padding: 15px; border-radius: 10px; border: 1px solid #cce8cc; text-align: left;">
-                <h3 style="margin: 0 0 8px 0; color: #28a745; font-size: 16px;">🇵🇰 Pakistani Users</h3>
-                <p style="margin: 5px 0; font-size: 14px; color: #333;"><b>NayaPay / JazzCash / EasyPaisa:</b></p>
-                <p style="margin: 0 0 10px 0; font-size: 15px; font-weight: bold; color: #000;">+923135657001</p>
-            </div>
-            <p style="font-size: 13px; color: #888; margin-top: 20px;">Thank you for your generosity! ❤️</p>
+    <!-- Modal -->
+    <div id="donateModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);">
+        <div style="background: #fff; margin: 10% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative;">
+            <span onclick="closeDonateModal()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h3>Support Us</h3>
+            <div style="background:#f4f8ff; padding:10px; margin-bottom:10px; border-radius:10px;">Skrill: mahmood396@gmail.com</div>
+            <div style="background:#f4fff4; padding:10px; border-radius:10px;">NayaPay: +923135657001</div>
         </div>
     </div>
 
     <script>
         function openDonateModal() { document.getElementById('donateModal').style.display = 'block'; }
         function closeDonateModal() { document.getElementById('donateModal').style.display = 'none'; }
-        window.onclick = function(event) { if (event.target == document.getElementById('donateModal')) { closeDonateModal(); } }
     </script>
-
-    <!-- Adsterra Popunder Ad Spot -->
     <script src="https://pl30176543.effectivecpmnetwork.com/af/41/81/af41819e29e049173a9116a7f116ff65.js"></script>
 
 </body>
