@@ -6,29 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreeDownloader.site</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #eef2f3; color: #333; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #eef2f5; color: #333; margin: 0; padding: 0; }
         
-        /* Original Dark Blue Header */
-        header { background: #003366; color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        header h1 { margin: 0; font-size: 36px; font-weight: bold; }
+        /* Deep Navy Header */
+        header { background-color: #003366; color: white; padding: 30px 0; text-align: center; }
+        header h1 { margin: 0; font-size: 32px; }
         
-        .container { max-width: 600px; margin: -30px auto 40px auto; padding: 0 20px; }
+        .container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
         
-        /* Main Card Style */
-        .box-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 25px; text-align: center; }
+        /* Main Card */
+        .box-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 25px; text-align: center; }
         
-        input[type="text"] { width: 90%; padding: 16px; font-size: 16px; border: 2px solid #eee; border-radius: 50px; margin-bottom: 20px; outline: none; }
-        .download-btn { background-color: #28a745; color: white; border: none; padding: 16px 50px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; max-width: 280px; margin-bottom: 15px; }
+        input[type="text"] { width: 90%; padding: 15px; border: 1px solid #ddd; border-radius: 50px; margin-bottom: 15px; outline: none; }
         
-        /* Buttons and Icons */
-        .support-btn { background: #007bff; color: white; border: none; padding: 12px 40px; border-radius: 50px; cursor: pointer; font-weight: bold; display: block; margin: 0 auto; }
+        .btn-download { background-color: #28a745; color: white; border: none; padding: 15px; width: 90%; border-radius: 50px; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
+        .btn-support { background-color: #007bff; color: white; border: none; padding: 15px; width: 90%; border-radius: 50px; font-weight: bold; cursor: pointer; }
         
-        .social-section { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .social-icon { background: #f0f0f0; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #003366; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-
-        /* Compact Steps */
-        .step-row { display: flex; align-items: center; margin-bottom: 10px; text-align: left; padding: 5px 10px; font-size: 15px; }
-        .step-number { background: #003366; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; font-size: 13px; margin-right: 15px; flex-shrink: 0; }
+        /* How to Section */
+        .how-to { text-align: left; }
+        .step { display: flex; align-items: center; margin-bottom: 15px; }
+        .step-num { background: #003366; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; margin-right: 15px; }
+        
+        /* Social Icons */
+        .socials { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .social-circle { background: #eee; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -38,43 +39,42 @@
     </header>
 
     <div class="container">
-        <!-- Main Tool Card -->
+        <!-- Main Card -->
         <div class="box-card">
-            <h2 style="margin-top:0;">Paste Video URL</h2>
+            <h3>Paste Video URL</h3>
             <input type="text" placeholder="Paste link here...">
-            <br>
-            <button class="download-btn">Download Now</button>
-            <button onclick="openDonateModal()" class="support-btn">❤️ Support Our Work</button>
+            <button class="btn-download">Download Now</button>
+            <button class="btn-support" onclick="openDonateModal()">❤️ Support Our Work</button>
             
-            <!-- Banner Ad -->
-            <div style="margin-top: 25px;">
+            <!-- Ad Space -->
+            <div style="margin-top: 20px;">
                 <script type="text/javascript"> atOptions = { 'key' : 'a12c72aeb6e00ec5e2f19a0a55bab44e', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script>
                 <script type="text/javascript" src="https://www.highperformanceformat.com/a12c72aeb6e00ec5e2f19a0a55bab44e/invoke.js"></script>
             </div>
         </div>
 
-        <!-- How to & Socials -->
-        <div class="box-card">
-            <h3 style="margin-top:0;">How to Download?</h3>
-            <div class="step-row"><div class="step-number">1</div> Copy the video link.</div>
-            <div class="step-row"><div class="step-number">2</div> Paste and hit Download.</div>
-            <div class="step-row"><div class="step-number">3</div> Save it to your device!</div>
+        <!-- How To Card -->
+        <div class="box-card how-to">
+            <h3>How to Download?</h3>
+            <div class="step"><div class="step-num">1</div> Copy the video link.</div>
+            <div class="step"><div class="step-num">2</div> Paste and hit Download.</div>
+            <div class="step"><div class="step-num">3</div> Save it to your device!</div>
             
-            <div class="social-section">
-                <a href="#" class="social-icon">FB</a>
-                <a href="#" class="social-icon">IG</a>
-                <a href="#" class="social-icon">YT</a>
+            <div class="socials">
+                <div class="social-circle">FB</div>
+                <div class="social-circle">IG</div>
+                <div class="social-circle">YT</div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="donateModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);">
-        <div style="background: #fff; margin: 10% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative;">
-            <span onclick="closeDonateModal()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+    <!-- Modal remains the same -->
+    <div id="donateModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);">
+        <div style="background: white; margin: 10% auto; padding: 20px; width: 300px; border-radius: 10px; text-align: center;">
             <h3>Support Us</h3>
-            <div style="background:#f4f8ff; padding:10px; margin-bottom:10px; border-radius:10px;">Skrill: mahmood396@gmail.com</div>
-            <div style="background:#f4fff4; padding:10px; border-radius:10px;">NayaPay: +923135657001</div>
+            <p>Skrill: mahmood396@gmail.com</p>
+            <p>NayaPay: +923135657001</p>
+            <button onclick="closeDonateModal()">Close</button>
         </div>
     </div>
 
@@ -83,6 +83,5 @@
         function closeDonateModal() { document.getElementById('donateModal').style.display = 'none'; }
     </script>
     <script src="https://pl30176543.effectivecpmnetwork.com/af/41/81/af41819e29e049173a9116a7f116ff65.js"></script>
-
 </body>
 </html>
